@@ -9,20 +9,22 @@ CACHE_DIR=$2
 ENV_DIR=$3
 
 APP_SUBFOLDER=$(cat ${ENV_DIR}/APP_SUBFOLDER)
+echo APP_SUBFOLDER
 
 if [[ -z "${APP_SUBFOLDER}" ]]; then
     echo "APP_SUBFOLDER was not set. Aborting" | indent
     exit 1
 fi
 
-cp ${BUILD_DIR}/${PROCFILE}/Procfile ${BUILD_DIR}/Procfile
+echo
+cp ${BUILD_DIR}/${APP_SUBFOLDER}/Procfile ${BUILD_DIR}/Procfile
 
 if ! [ $? ]; then
     echo "FAILED to copy Procfile" | indent
     exit 1
 fi
 
-cp ${BUILD_DIR}/${PROCFILE}/package.json ${BUILD_DIR}/package.json
+cp ${BUILD_DIR}/${APP_SUBFOLDER}/package.json ${BUILD_DIR}/package.json
 
 if ! [ $? ]; then
     echo "FAILED to copy package.json" | indent
