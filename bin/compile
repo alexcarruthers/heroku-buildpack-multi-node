@@ -9,14 +9,12 @@ CACHE_DIR=$2
 ENV_DIR=$3
 
 APP_SUBFOLDER=$(cat ${ENV_DIR}/APP_SUBFOLDER)
-echo APP_SUBFOLDER
 
 if [[ -z "${APP_SUBFOLDER}" ]]; then
     echo "APP_SUBFOLDER was not set. Aborting" | indent
     exit 1
 fi
 
-echo
 cp ${BUILD_DIR}/${APP_SUBFOLDER}/Procfile ${BUILD_DIR}/Procfile
 
 if ! [ $? ]; then
